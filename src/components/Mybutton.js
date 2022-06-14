@@ -10,8 +10,8 @@ import {
 const Mybutton = (props) => {
   return (
     <View style={{width:'90%'}}>      
-        <TouchableOpacity onPress={()=>props.onPress}>
-            <LinearGradient colors={['#08d4c4','#01ab9d']} style={styles.signIn}>              
+        <TouchableOpacity onPress={props.onPress}>
+            <LinearGradient colors={['#08d4c4','#01ab9d']} style={styles.linear}>              
                 <Text style={[styles.textSign,{color:'#fff'}]}>{props.title}</Text>                        
             </LinearGradient>
         </TouchableOpacity>      
@@ -21,7 +21,7 @@ const Mybutton = (props) => {
 export default Mybutton;
 
 const styles=StyleSheet.create({
-    signIn:{
+    linear:{
         height:50,
         justifyContent:'center',
         alignItems:'center',

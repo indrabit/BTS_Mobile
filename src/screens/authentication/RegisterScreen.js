@@ -19,32 +19,18 @@ import axios, {Axios} from 'axios';
 
 
 const RegisterScreen = ({ navigation }) => {
-  // The Name of the User.
-	// const [name, setName] = useState('');
-	// The Email Adress of the User.
 	const [email, setEmail] = useState('');
 	// The Password of the User.
 	const [password, setPassword] = useState('');
-	// The Confirm Password of the User.
-	// const [confirmPassword, setConfirmPassword] = useState('');
-  const [fistname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
+
 
   const  ValidateForm=()=>{
-		// Validate the Form Data.
-		// if(name.length == 0){Alert.alert("Error", "Please enter your name.");return;}
+		
 		if(email.length == 0){Alert.alert("Error", "Please enter your email.");return;}
 		if(!email.includes('@') || !email.includes('.com')){Alert.alert("Error", "Please enter a valid email.");return;}
 		if(password.length == 0){Alert.alert("Error", "Please enter your password.");return;}
 		if(password.length < 4){Alert.alert("Error", "Password must be atleast 6 characters long.");return;}
-		// if(confirmPassword.length == 0){Alert.alert("Error", "Please confirm your password.");return;}
-		// if(password !== confirmPassword){Alert.alert("Error", "Passwords don't match!");return;}
-    if(fistname.length == 0){Alert.alert("Error", "Please enter your fist name.");return;}
-		if(lastname.length == 0){Alert.alert("Error", "Please enter your last name.");return;}
-		
-		// TODO: Hash User Password.
-		// TODO: Send Form Data to Server.
-		
+			
 	}
   const loginHandle=()=>{
    ValidateForm();
@@ -52,18 +38,17 @@ const RegisterScreen = ({ navigation }) => {
 
   }
 	const userSignUp=()=>{
+    
 		const user = {
             email: email,
-            username:email,
-            password: password,
-            first_name:fistname,
-            last_name:lastname
+            username: email,
+            password: password          
           };
-		//   console.log(LOGIN_URL);
-		  axios
-		  .post(REGISTER_URL, user)
+		  // console.log(REGISTER_URL);
+		  axios.post(REGISTER_URL, user)
 		  .then(res => {
 			  console.log(res.status);
+
 			if (res.status === 201) {
 				// console.log(res);
 				Alert.alert(
@@ -104,13 +89,7 @@ const RegisterScreen = ({ navigation }) => {
 			</View>
 			<View style={styles.action}>          
 				<TextInput placeholder='Password'  onChangeText={(val)=>{setPassword(val)}} style={styles.textInput} autoCapitalize="none" secureTextEntry />
-			</View>
-			<View style={styles.action}>          
-				<TextInput placeholder='First Name'  onChangeText={(val)=>{setFirstname(val)}} style={styles.textInput} autoCapitalize="none" secureTextEntry />
-			</View>
-			<View style={styles.action}>          
-				<TextInput placeholder='Last Name'  onChangeText={(val)=>{setLastname(val)}} style={styles.textInput} autoCapitalize="none" secureTextEntry />
-			</View>
+			</View>					
 
 			 {/*Button  */}
 			<View style={{width:'90%'}}>      

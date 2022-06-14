@@ -82,6 +82,7 @@ const AuthNavigator = () => {
 			console.log(e);
 		  }
 		dispatch({ type: 'LOGOUT' });
+		navigation.navigate('Login');
 		},
 
 		retrieve:async()=>{
@@ -96,6 +97,7 @@ const AuthNavigator = () => {
 			  console.log(e);
 			}
 		  dispatch({ type: 'RETRIEVE_TOKEN',token:userToken,userKey:userKey });
+			
 		  },
 			   
 	  }),[]);

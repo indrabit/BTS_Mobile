@@ -38,10 +38,10 @@ const MoreScreen = ({ navigation}) => {
     };
 	
 	const logOut=()=>{
-		signOut('');
 		setUseauth(false);
 		setUsername('');
-    navigation.navigate('Login')
+		signOut('');	
+    	navigation.navigate('Login')
 	}
 
   return (

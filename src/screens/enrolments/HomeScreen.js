@@ -12,6 +12,7 @@ import Card from '../../components/Card';
 import { USER_KEY,TOKEN_KEY } from '../../service/context';
 import { useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { set } from 'react-native-reanimated';
 
 
 const HomeScreen = ({ navigation }) => {
@@ -27,6 +28,7 @@ const HomeScreen = ({ navigation }) => {
   ]
   const isFocused = useIsFocused();
   const [user,setUser]=useState();
+  const [key,setKey]=useState();
   const [data, setData] = useState([]);
 
   // Use effect to acces user id
@@ -43,9 +45,12 @@ const HomeScreen = ({ navigation }) => {
 
     try{
         userToken= await AsyncStorage.getItem(TOKEN_KEY);
-         userKey=await AsyncStorage.getItem(USER_KEY);
-        console.log("retrive success" + userKey);
-        setUser(userKey)
+        userKey=await AsyncStorage.getItem(USER_KEY);
+        // console.log("retrive success" + userKey);
+        console.log("retrive success" + userToken);
+        setUser(userKey);
+        setKey(userToken);
+       
         }
         catch(e){
       console.log(e);
@@ -68,14 +73,12 @@ const HomeScreen = ({ navigation }) => {
   }
   const clickEventListener=(item)=>
    {
-
      if(item.id==1){
-       navigation.navigate("Person",{userId:user})   
+      navigation.navigate("Person",{userId:user,token:key})   
      } 
      else if (item.id==2){
       navigation.navigate("Family",{userId:user})
-     }
-    
+     }    
     // Alert.alert(item.title);
   }
     return (
