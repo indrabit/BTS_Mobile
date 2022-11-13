@@ -52,7 +52,6 @@ const fetchData = async () => {
     })   
   })
 };
-
   const firstnameChange=(val)=>{
     setData({
       ...data,
